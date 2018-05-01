@@ -1,0 +1,121 @@
+<?php
+
+class Book {
+
+	public static $name = 'Mohit';
+
+	final public static function author() {
+		return "The author name is : ".self::$name;
+	}
+
+	public static function getAuthor() {
+		echo static::author();
+	}
+
+}
+
+class newBook extends Book {
+
+	public static function author() {
+		return "The authors name are: ".self::$name. " and Ritvik";
+	}
+
+}
+
+Book::getAuthor();
+echo "<br/>";
+newBook::getAuthor();
+
+Fatal error: Cannot override final method Book::author()
+
+<?php
+
+final class Book {
+
+	public static $name = 'Mohit';
+
+	final public static function author() {
+		return "The author name is : ".self::$name;
+	}
+
+	public static function getAuthor() {
+		echo static::author();
+	}
+
+}
+
+class newBook extends Book {
+}
+
+Book::getAuthor();
+echo "<br/>";
+newBook::getAuthor();
+
+Fatal error : Class newBook may not inherit from final class (Book)
+
+<?php
+
+final class Book {
+
+	public static $name = 'Mohit';
+
+	final public static function author() {
+		return "The author name is : ".self::$name;
+	}
+
+	public static function getAuthor() {
+		echo static::author();
+	}
+
+}
+
+class newBook{
+
+	public static function author() {
+		return "The authors name are: ".self::$name. " and Ritvik";
+	}
+
+}
+
+Fatal error : Uncaught Error : Call to undefined method in newBook::getAuthor()
+Error : Call to undefined method newBook::getAuthor()
+
+
+<?php
+
+class baseclass {
+
+	final function printMe() {
+		echo "This is base class function";
+	}
+}
+
+class childclass extends baseclass {
+	function printMe() {
+		echo "This is child class function";
+	}
+}
+
+$obj = new childclass();
+$obj->printMe();
+
+Fatal error : Cannot override final method baseclass::printMe();
+
+
+<?php
+
+final class baseclass {
+
+	function printMe() {
+		echo "This is base class function";
+	}
+}
+
+class childclass extends baseclass {
+	
+}
+
+$obj = new childclass();
+$obj->printMe();
+
+Fatal error : Class childclass may not inherit from final class (baseclass)
